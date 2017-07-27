@@ -1,0 +1,18 @@
+
+<div class="alert_window {{windowClass}}">
+    
+    <div class="ac_backdrop" >
+
+    </div>
+    <div  class="ac_container"  style="{{containerStyle}}">
+    	<div class="text">
+    		<div class="title" ng-if="title" ng-bind="title"></div>
+    		<div class="message" ng-if="message" ng-bind="message"></div>
+    	</div>
+    	<div class="buttons" ng-if="buttonObjects.length>0" >
+			<div class="button_item" ng-repeat="buttonObj in buttonObjects" style="">
+				<button ng-click="buttonObj.action()" ng-bind="buttonObj.title" ng-class="buttonObj.class"></button>
+			</div>
+    	</div>
+    </div>
+</div>
