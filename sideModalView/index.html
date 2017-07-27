@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>右侧滑出窗</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body ng-app="app">
+
+	<div class="wrap" ng-controller='RootController'  id='wrap'>
+		<div class="top">
+			<button ng-click='showInRoot()'>从顶级展开</button>
+			<button ng-click='showInContent()'>在内容区展开</button>
+		</div>
+		<div class='main' id='main'>
+			内容
+		</div>
+	</div>
+
+	<script id="sideModalView.html" type="text/ng-template">
+			<div class="side_modal_view" >
+					<div class="smv_backdrop" ng-click="close()"></div>
+					<div class="smv_backdrop_spacing">
+					</div>
+					<div  class="smv_container" ng-transclude style="{{containerStyle}}">
+	
+					</div>
+			</div>
+	</script>
+
+	<script id="modalTemplate1.html" type="text/ng-template">
+			<div class="modal1" >
+					内容1
+			</div>
+	</script>
+	<script id="modalTemplate2.html" type="text/ng-template">
+			<div class="modal2" >
+					<button ng-click='showInContent()'>在内容区展开</button>
+					<button ng-click='$close()'>关闭</button>
+			</div>
+						
+	</script>
+	
+	<script src="main.js"></script>
+</body>
+</html>
