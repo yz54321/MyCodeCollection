@@ -18,6 +18,7 @@
  * scrollToPosition——滚动到指定位置，参数为目标位置与顶部的距离
  * scrollToMessageAtIndex——根据index滚动到指定标签，可传1或2个index，第一个为messageCell的index，第二个为messageBlock的index
  * scrollToBottom——滚到最底
+ * 
  */
 {
     angular.module('utilsModule')
