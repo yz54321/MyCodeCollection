@@ -30,25 +30,22 @@
             restrict: 'AE',
             template:'<div class="message_displayer_wrap" ng-transclude></div>',
             transclude:true,
-            controller: function() {
-
-            },
             scope: {
                 messageScrollControl: '='
             },
-            link: function(scope, element, attr) {
-                if(scope.messageScrollControl){
+            controller: function($scope, $element, $attrs) {
+                if($scope.messageScrollControl){
 
                     var collect={
                         'scrollToPosition':scrollToPosition,//滚动到指定位置
                         'scrollToMessageAtIndex':scrollToMessageAtIndex,//根据index滚动到子标签
                         'scrollToBottom':scrollToBottom//滚到最底
                     };
-                    scope.messageScrollControl=collect;
+                    $scope.messageScrollControl=collect;
 
                     //滚动到指定位置
                     function scrollToPosition(position){
-                        element.animate({'scrollTop':position},500);
+                        $element.animate({'scrollTop':position},500);
                     }
 
 
@@ -57,11 +54,11 @@
 
 
                         let targetEle=null;
-                        if(cellIndex<0||cellIndex>=element.find('.md_message_cell').length){
+                        if(cellIndex<0||cellIndex>=$element.find('.md_message_cell').length){
 
                             return;
                         }
-                        let targetCell=element.find('.md_message_cell').eq(cellIndex).parent();
+                        let targetCell=$element.find('.md_message_cell').eq(cellIndex).parent();
                         // let targetBlock=targetCell.find('.md_message_block').eq(blockIndex);
                         if(typeof(blockIndex)=="undefined"){
                             targetEle=targetCell;
@@ -71,14 +68,14 @@
                         }else{
                             targetEle=targetCell.find('.md_message_block').eq(blockIndex).parent();
                         }
-                        let height=element.scrollTop()+(targetEle.offset().top-element.offset().top)-parseInt(element.css('padding-top'));
+                        let height=$element.scrollTop()+(targetEle.offset().top-$element.offset().top)-parseInt($element.css('padding-top'));
                         scrollToPosition(height);
 
                     }
 
                     //滚到最底
                     function scrollToBottom(){
-                        scrollToPosition(element[0].scrollHeight-element.outerHeight());
+                        scrollToPosition($element[0].scrollHeight-$element.outerHeight());
                     }
 
                 }
@@ -94,12 +91,9 @@
             restrict: 'AE',
             template:'<div class="md_message_cell" ng-transclude></div>',
             transclude:true,
-            controller: function() {
+            controller: function($scope, $element, $attrs) {
 
             },
-            link: function(scope, element, attr,controller) {
-
-            }
         };
     }
 
@@ -110,7 +104,7 @@
             restrict: 'AE',
             template:'<div class="md_message_block" ng-transclude></div>',
             transclude:true,
-            link: function(scope, element, attr) {
+            controller: function($scope, $element, $attrs) {
 
             }
         };
